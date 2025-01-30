@@ -16,7 +16,7 @@ export const Overview = ({ contactmodal, setContactModal }) => {
             </div>
             {/* Paragraph */}
             <div className="max-w-4xl md:text-xl text-sm text-black font-body font-normal text-center mx-auto">
-              <span className="font-bold">Godrej Shettigere</span>, Godrej Shettigere is an astonishing pre-launch apartment project in Shettiegere, close to Bangalore airport Trumpet Road, North Bangalore. This new residential project, Godrej Shettigere, is one of the best upcoming launches in North Bangalore. It is one of the best luxury apartments near Devanahalli, styled in a contemporary way. The project location is close to the city's major employment hubs, which is beneficial for working professionals.
+              <span className="font-bold">Godrej Airport-city</span> is an astonishing pre-launch apartment project in Shettiegere, close to Bangalore airport Trumpet Road, North Bangalore. This new residential project, Godrej Shettigere, is one of the best upcoming launches in North Bangalore. It is one of the best luxury apartments near Devanahalli, styled in a contemporary way. The project location is close to the city's major employment hubs, which is beneficial for working professionals.
             </div>
 
             <div className="flex flex-wrap">
