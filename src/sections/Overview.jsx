@@ -11,12 +11,16 @@ export const Overview = ({ contactmodal, setContactModal }) => {
         <div className="">
           <div className="text-left flex flex-col justify-center gap-10 h-full">
             {/* Title */}
-            <div className="font-subheading font-bold text-3xl md:text-5xl text-black ">
+            <div className="font-subheading font-bold text-3xl md:text-5xl text-black text-center ">
               Overview
             </div>
             {/* Paragraph */}
-            <div className="max-w-4xl md:text-xl text-sm text-black font-body font-normal  mx-auto">
-              <span className="font-bold">Godrej Airport-city</span> is an astonishing pre-launch apartment project in Shettiegere, close to Bangalore airport Trumpet Road, North Bangalore. This new residential project, Godrej Shettigere, is one of the best upcoming launches in North Bangalore. <p>It is one of the best luxury apartments near Devanahalli, styled in a contemporary way. The project location is close to the city's major employment hubs, which is beneficial for working professionals.</p>
+            <div className="max-w-4xl md:text-xl text-sm text-black font-body font-normal  mx-auto text-justify  ">
+              <span className="font-bold">Godrej Airport-city</span> Godrej Airport-City is an emerging residential development in North Bengaluru that offers quick connectivity to NH7 (Bengaluru-Hyderabad Highway) and the upcoming Bengaluru Aerospace Park, along with access to major business hubs, hospitals and schools. 
+
+<p>Located in Shettigere, a fast-developing area near Kempegowda International Airport, it ensures a tranquil yet well-connected lifestyle, making it an ideal choice for frequent travellers and urban professionals alike. </p>
+
+With a total size of 62 acres, the Godrej Airport-City township is set to be one of the most sought-after addresses in Bengaluru.
             </div>
 
             <div className="flex flex-wrap">
@@ -34,7 +38,7 @@ export const Overview = ({ contactmodal, setContactModal }) => {
                     <li>Phase 1 Club House :- 50000sqft.</li>
                   </ul>
                   <button
-              className="w-full px-12 py-5 lg:mt-10 mt-0 bg-trimayablue1 text-white font-semibold rounded-lg text-base border-2 border-transparent transition-all duration-300 ease-in-out hover:bg-transparent hover:text-trimayablue1 hover:border-trimayablue1"
+              className="w-full px-12 py-5 lg:mt-10 mt-0 bg-[#2c2c2c] text-white font-semibold rounded-lg text-base border-2 border-transparent transition-all duration-300 ease-in-out hover:bg-transparent hover:text-trimayablue1 hover:border-trimayablue1"
               onClick={() => {
                 setContactModal(!contactmodal);
               }}

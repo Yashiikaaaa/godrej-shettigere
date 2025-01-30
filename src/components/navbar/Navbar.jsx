@@ -14,7 +14,7 @@ export const Navbar = ({ sitevisitmodal, setSiteVisitModal }) => {
 
   return (
     <nav className="navbar font-body py-2 fixed w-full z-20 top-0 start-0 bg-[#294b29] ">
-      <div className="max-w-8xl text-body mx-auto px-5 lg:px-10 flex flex-wrap items-center justify-between py-1">
+      <div className="max-w-10xl text-body mx-auto px-5 lg:px-10 flex flex-wrap items-center justify-between py-1">
         <a href="/" className="flex items-center px-4 space-x-3 rtl:space-x-reverse">
           <img src={logo} className="h-10 md:h-14 " alt="Birla Trimaya Phase 2" />
         </a>

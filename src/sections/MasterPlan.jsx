@@ -16,7 +16,7 @@ export const MasterPlan = ({setContactModal, contactmodal }) => {
               alt="Master Plan" 
               className="max-w-screen-lg w-[80vw] pb-4 " />
         <button
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-4 py-3 text-white bg-trimayablue1  text-center rounded-lg text-xs md:text-lg font-medium"
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-4 py-3 text-white bg-[#2c2c2c]  text-center rounded-lg text-xs md:text-lg font-medium"
           onClick={() => {
             setContactModal(!contactmodal);
           }}

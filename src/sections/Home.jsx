@@ -36,7 +36,7 @@ export const Home = ({ contactmodal, setContactModal }) => {
             {/* Main Title & Subtitle */}
             <div className="w-full md:w-2/3 flex flex-col justify-start max-w-4xl gap-2 sm:gap-5">   
               <h1 className="font-heading text-3xl md:text-6xl font-semibold my-3">
-                Godrej Airport-city
+                Godrej Airport-City
               </h1>
               <p className="font-body text-white md:text-2xl text-sm font-normal lg:w-5/6 mx-auto lg:mx-0">
               Luxury Apartments in Shettigere, North Bengaluru

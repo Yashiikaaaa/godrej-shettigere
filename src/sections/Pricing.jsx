@@ -100,7 +100,7 @@ const Pricing = ({ setContactModal, contactmodal }) => {
 
                   {/* Get Pricing Button */}
                   <button
-                    className="absolute w-max top-1/2 right-0 transform -translate-y-1/2 px-6 py-3 border-gray-300 border bg-trimayablue1 text-white text-center rounded-lg font-body font-semibold text-sm sm:text-base"
+                    className="absolute w-max top-1/2 right-0 transform -translate-y-1/2 px-6 py-3 border-gray-300 border bg-[#2c2c2c] text-white text-center rounded-lg font-body font-semibold text-sm sm:text-base"
                     onClick={() => {
                       setContactModal(!contactmodal);
                     }}
