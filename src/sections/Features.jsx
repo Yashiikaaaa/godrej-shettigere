@@ -30,7 +30,7 @@ export const Features = () => {
 
               <div className="feature-item py-2 lg:py-4 px-6 p-2 md:p-4">
                   <h1 className="text-xs md:text-lg lg:font-normal font-body text-center">
-                      Total Land Parcel
+                      Project Size
                   </h1>
                   <h3 className="text-xs font-body md:text-2xl font-medium pt-4">
                       62 Acres
