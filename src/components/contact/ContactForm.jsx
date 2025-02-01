@@ -178,7 +178,7 @@ const validateForm = () => {
   }
 
   // Use libphonenumber-js to validate
-  if (!isValidPhoneNumber(number, "IN")) {
+  if (!isValidPhoneNumber(number)) {
     showAlert("Invalid Phone Number. Please enter a valid number.");
     return false;
   }
