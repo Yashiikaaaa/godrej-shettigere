@@ -7,6 +7,7 @@ import { Xmark } from "iconoir-react";
 import overlaybg from "../../assets/1pic.webp";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import { isValidPhoneNumber } from "libphonenumber-js";
 
 const trackingId = import.meta.env.VITE_GA_MEASUREMENT_ID;
 const ip_api = import.meta.env.VITE_IP_API;
@@ -141,27 +142,54 @@ export const ContactForm = ({
     );
   };
 
-  const validateForm = () => {
-    const { name, number } = formData;
-    if (!name || !number) {
-      showAlert("Please fill in all required fields.");
-      return false;
-    }
-    const nameRegex = /^[A-Za-z ]+$/;
-    if (!nameRegex.test(name)) {
-      showAlert("Invalid Full Name. Please use only alphabets and spaces.");
-      return false;
-    }
-    if (number.length < 10 || number.length > 15) {
-      showAlert("Invalid Phone Number.");
-      return false;
-    }
-    if (ipDetails === "PK") {
-      showAlert("ACCESS BLOCKED!");
-      return false;
-    }
-    return true;
-  };
+  // const validateForm = () => {
+  //   const { name, number } = formData;
+  //   if (!name || !number) {
+  //     showAlert("Please fill in all required fields.");
+  //     return false;
+  //   }
+  //   const nameRegex = /^[A-Za-z ]+$/;
+  //   if (!nameRegex.test(name)) {
+  //     showAlert("Invalid Full Name. Please use only alphabets and spaces.");
+  //     return false;
+  //   }
+  //   if (number.length !==10) {
+  //     showAlert("Invalid Phone Number.");
+  //     return false;
+  //   }
+  //   if (ipDetails === "PK") {
+  //     showAlert("ACCESS BLOCKED!");
+  //     return false;
+  //   }
+  //   return true;
+  // };
+
+
+const validateForm = () => {
+  const { name, number } = formData;
+  if (!name || !number) {
+    showAlert("Please fill in all required fields.");
+    return false;
+  }
+  const nameRegex = /^[A-Za-z ]+$/;
+  if (!nameRegex.test(name)) {
+    showAlert("Invalid Full Name. Please use only alphabets and spaces.");
+    return false;
+  }
+
+  // Use libphonenumber-js to validate
+  if (!isValidPhoneNumber(number, "IN")) {
+    showAlert("Invalid Phone Number. Please enter a valid number.");
+    return false;
+  }
+
+  if (ipDetails === "PK") {
+    showAlert("ACCESS BLOCKED!");
+    return false;
+  }
+  return true;
+};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
