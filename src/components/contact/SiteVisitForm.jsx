@@ -49,7 +49,7 @@ async function addDataToFireStore(name, number, startDate, utmParams) {
       phonenumber: number,
       campaign: true, // Fixed as true
       projectName: "godrej shettigere", // Example project name
-      projectId: "yxNwAXZPYdk5mdez2lvc", // Example property ID
+      projectId: "Ux8CYriFrhjOGqNQaGG6", // Example property ID
       siteVisitDate: siteVisitTimestamp, // Date for the site visit in Unix timestamp
       added: addedUnixTimestamp, // Current timestamp in Unix format
       utmDetails: {

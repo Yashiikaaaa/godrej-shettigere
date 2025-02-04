@@ -72,7 +72,7 @@ async function addDataToFireStore(name, number, utmParams) {
     }
 
     const addedUnixTimestamp = getUnixDateTime(); // Current Unix timestamp
-    const propertyId = "yxNwAXZPYdk5mdez2lvc"; // Example property ID
+    const propertyId = "Ux8CYriFrhjOGqNQaGG6"; // Example property ID
     const projectName = "godrej shettigere"; // Example project name
 
     // Add document to Firestore
