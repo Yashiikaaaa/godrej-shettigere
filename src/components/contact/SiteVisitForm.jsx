@@ -30,43 +30,6 @@ function getUTMParams() {
 }
 
 
-async function addDataToFireStore(name, number, startDate, utmParams) {
-  try {
-    const querySnapshot = await getDocs(
-      query(collection(db, "new_users"), where("phonenumber", "==", number))
-    );
-    if (!querySnapshot.empty) {
-      console.log("Duplicate entry");
-      return false;
-    }
-
-    const addedUnixTimestamp = getUnixDateTime();
-    const siteVisitTimestamp = Math.floor(startDate.getTime() / 1000);
-    // const randomId = generateRandomId();
-
-    await addDoc(collection(db, "new_users"), {
-      name: name.toLowerCase(),
-      phonenumber: number,
-      campaign: true, // Fixed as true
-      projectName: "godrej shettigere", // Example project name
-      projectId: "Ux8CYriFrhjOGqNQaGG6", // Example property ID
-      siteVisitDate: siteVisitTimestamp, // Date for the site visit in Unix timestamp
-      added: addedUnixTimestamp, // Current timestamp in Unix format
-      utmDetails: {
-        ...(utmParams.utmSource ? { source: utmParams.utmSource } : {}),
-        ...(utmParams.utmMedium ? { medium: utmParams.utmMedium } : {}),
-        ...(utmParams.utmCampaign ? { campaign: utmParams.utmCampaign } : {}),
-      },
-    });
-
-    console.log("Document successfully added");
-    return true;
-  } catch (error) {
-    console.error("Error adding document:", error);
-    return false;
-  }
-}
-
 // SiteVisitForm Component
 export const SiteVisitForm = ({ sitevisitmodal, setSiteVisitModal }) => {
   const [formData, setFormData] = useState({ name: "", number: "" });
@@ -138,8 +101,8 @@ export const SiteVisitForm = ({ sitevisitmodal, setSiteVisitModal }) => {
   
     showAlert("Submitting form...");
 
-    const normalizedNumber = number.trim();
-    const normalizedName = name.trim().toLowerCase();
+    const normalizedNumber = formData.number.trim();
+    const normalizedName = formData.name.trim().toLowerCase();
     const siteVisitTimestamp = Math.floor(startDate.getTime() / 1000);
   
     const propertyId = "ac6RnlGwvRbJb3ywZ6hy"; // Example property ID
