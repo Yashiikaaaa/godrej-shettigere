@@ -26,9 +26,9 @@ ReactGA.initialize(trackingId);
 function getUTMParams() {
   const params = new URLSearchParams(window.location.search);
   return {
-    utmSource: params.get("utm_source") || "",
-    utmMedium: params.get("utm_medium") || "",
-    utmCampaign: params.get("utm_campaign") || "",
+    utmSource: params.get("utmSource") || "",
+    utmMedium: params.get("utmMedium") || "",
+    utmCampaign: params.get("utmCampaign") || "",
   };
 }
 
@@ -191,36 +191,76 @@ const validateForm = () => {
 };
 
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (loading) return;
-    setLoading(true);
-
-    if (!validateForm()) {
-      setLoading(false);
-      return;
-    }
-
-    showAlert("Submitting form...");
-    const added = await addDataToFireStore(formData.name, formData.number, utmParams);
-
-    if (added) {
-      ReactGA.event({
-        category: "Form Submission",
-        action: "lead_form_submit",
-        label: utmParams.utmCampaign || "Lead Form",
-        value: 1,
-      });
-      setFormData({ name: "", number: "" });
-      showAlert(
-        "We have successfully received your information. Expect to hear from us shortly!"
-      );
-    } else {
-      showAlert("Duplicate entry found. Please use a different phone number.");
-    }
-
-    setLoading(false);
-  };
+   const handleSubmit = async (e) => {
+      e.preventDefault();
+      if (loading) return;
+      setLoading(true);
+    
+      // Validate form before proceeding
+      if (!validateForm()) {
+        setLoading(false);
+        return;
+      }
+    
+      setAlert(<FormAlert message="Submitting form..." onClose={() => setAlert(null)} />);
+    
+      const normalizedNumber = number.trim();
+      const normalizedName = name.trim().toLowerCase();
+      const siteVisitTimestamp = Math.floor(startDate.getTime() / 1000);
+    
+      const propertyId = "Ux8CYriFrhjOGqNQaGG6"; // Example property ID
+      const projectName = "godrej shettigere"; // Example project name
+    
+      const payload = {
+        name: normalizedName,
+        phonenumber: normalizedNumber,
+        campaign: true,
+        projectId: propertyId,
+        projectName: projectName,
+        siteVisitDate: siteVisitTimestamp,
+        utmDetails: {
+          source: utmParams.utmSource || null,
+          medium: utmParams.utmMedium || null,
+          campaign: utmParams.utmCampaign || null,
+        }
+      };
+    
+      try {
+        // Optionally, you can call the handleMultipleCampaignData function if necessary:
+        // await handleMultipleCampaignData(payload);
+    
+        // Send the request to the server
+        const response = await fetch("https://handlemultiplecampaigndata-66bpoanwxq-uc.a.run.app", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json" // Ensure the server knows you're sending JSON
+          },
+          body: JSON.stringify(payload) // Convert the payload object to a JSON string
+        });
+    
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+    
+        // Parse the JSON response from the server
+        const result = await response.json();
+    
+        // Log the successful response data
+        console.log("Success:", result);  
+    
+        // Clear form fields after successful submission
+        setName("");
+        setNumber("");
+    
+        // Show success alert
+        setAlert(<FormAlert message="We received your info. Expect a response soon!" onClose={() => setAlert(null)} />);
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        setAlert(<FormAlert message="Something went wrong. Please try again later." onClose={() => setAlert(null)} />);
+      } finally {
+        setLoading(false);
+      }
+    };
 
   return (
     <div className="fixed top-24 left-0 right-0 bg-white z-30 w-full md:w-fit mx-auto">
