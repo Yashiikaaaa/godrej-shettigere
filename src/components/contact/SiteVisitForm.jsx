@@ -23,9 +23,9 @@ function getUnixDateTime() {
 function getUTMParams() {
   const params = new URLSearchParams(window.location.search);
   return {
-    utmSource: params.get("utm_source") || "",
-    utmMedium: params.get("utm_medium") || "",
-    utmCampaign: params.get("utm_campaign") || "",
+    utmSource: params.get("utmSource") || "",
+    utmMedium: params.get("utmMedium") || "",
+    utmCampaign: params.get("utmCampaign") || "",
   };
 }
 
@@ -123,6 +123,8 @@ export const SiteVisitForm = ({ sitevisitmodal, setSiteVisitModal }) => {
     return true;
   };
 
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (loading) return;
@@ -134,14 +136,14 @@ export const SiteVisitForm = ({ sitevisitmodal, setSiteVisitModal }) => {
       return;
     }
   
-    setAlert(<FormAlert message="Submitting form..." onClose={() => setAlert(null)} />);
-  
+    showAlert("Submitting form...");
+
     const normalizedNumber = number.trim();
     const normalizedName = name.trim().toLowerCase();
     const siteVisitTimestamp = Math.floor(startDate.getTime() / 1000);
   
-    const propertyId = "Ux8CYriFrhjOGqNQaGG6"; // Example property ID
-    const projectName = "godrej shettigere"; // Example project name
+    const propertyId = "ac6RnlGwvRbJb3ywZ6hy"; // Example property ID
+    const projectName = "Prestige Southern Star"; // Example project name
   
     const payload = {
       name: normalizedName,
@@ -181,18 +183,17 @@ export const SiteVisitForm = ({ sitevisitmodal, setSiteVisitModal }) => {
       console.log("Success:", result);  
   
       // Clear form fields after successful submission
-      setName("");
-      setNumber("");
   
-      // Show success alert
-      setAlert(<FormAlert message="We received your info. Expect a response soon!" onClose={() => setAlert(null)} />);
+      showAlert("We received your info. Expect a response soon!");
     } catch (error) {
       console.error("Error submitting form:", error);
-      setAlert(<FormAlert message="Something went wrong. Please try again later." onClose={() => setAlert(null)} />);
+      // setAlert(<FormAlert message="Something went wrong. Please try again later." onClose={() => setAlert(null)} />);
     } finally {
       setLoading(false);
     }
   };
+
+
 
   // Function to handle color change in the time picker (not used in this example)
   let handleColor = (time) => {

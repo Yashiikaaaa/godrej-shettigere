@@ -26,9 +26,9 @@ ReactGA.initialize(trackingId);
 function getUTMParams() {
   const params = new URLSearchParams(window.location.search);
   return {
-    utmSource: params.get("utm_source") || "",
-    utmMedium: params.get("utm_medium") || "",
-    utmCampaign: params.get("utm_campaign") || "",
+    utmSource: params.get("utmSource") || "",
+    utmMedium: params.get("utmMedium") || "",
+    utmCampaign: params.get("utmCampaign") || "",
   };
 }
 
@@ -56,47 +56,7 @@ function getUnixDateTime() {
  * @param {object} utmParams - UTM parameters.
  * @returns {boolean} Returns true if data was added successfully, false otherwise.
  */
-async function addDataToFireStore(name, number, utmParams) {
-  try {
-    // Normalize the phone number to ensure consistent formatting
-    const normalizedNumber = number.trim();
 
-    // Check if the phone number already exists in Firestore
-    const querySnapshot = await getDocs(
-      query(collection(db, "new_users"), where("phonenumber", "==", normalizedNumber))
-    );
-
-    if (!querySnapshot.empty) {
-      console.log("Duplicate entry found for phone number:", normalizedNumber);
-      return false;
-    }
-
-    const addedUnixTimestamp = getUnixDateTime(); // Current Unix timestamp
-    const propertyId = "Ux8CYriFrhjOGqNQaGG6"; // Example property ID
-    const projectName = "godrej shettigere"; // Example project name
-
-    // Add document to Firestore
-    const docRef = await addDoc(collection(db, "new_users"), {
-      name: name.toLowerCase(),
-      phonenumber: normalizedNumber,
-      campaign: true,
-      projectId: propertyId,
-      added: addedUnixTimestamp,
-      projectName: projectName,
-      utmDetails: {
-        ...(utmParams.utmSource ? { source: utmParams.utmSource } : {}),
-        ...(utmParams.utmMedium ? { medium: utmParams.utmMedium } : {}),
-        ...(utmParams.utmCampaign ? { campaign: utmParams.utmCampaign } : {}),
-      },
-    });
-
-    console.log("Document written with ID:", docRef.id);
-    return true;
-  } catch (error) {
-    console.error("Error adding data to Firestore:", error);
-    return false;
-  }
-}
 
 //
 // ContactForm Component
@@ -202,11 +162,10 @@ const validateForm = () => {
         return;
       }
     
-      setAlert(<FormAlert message="Submitting form..." onClose={() => setAlert(null)} />);
+      showAlert("Submitting form...");
     
-      const normalizedNumber = number.trim();
-      const normalizedName = name.trim().toLowerCase();
-      const siteVisitTimestamp = Math.floor(startDate.getTime() / 1000);
+      const normalizedNumber = formData.number.trim();
+      const normalizedName = formData.name.trim().toLowerCase();
     
       const propertyId = "Ux8CYriFrhjOGqNQaGG6"; // Example property ID
       const projectName = "godrej shettigere"; // Example project name
@@ -217,7 +176,6 @@ const validateForm = () => {
         campaign: true,
         projectId: propertyId,
         projectName: projectName,
-        siteVisitDate: siteVisitTimestamp,
         utmDetails: {
           source: utmParams.utmSource || null,
           medium: utmParams.utmMedium || null,
@@ -248,15 +206,12 @@ const validateForm = () => {
         // Log the successful response data
         console.log("Success:", result);  
     
-        // Clear form fields after successful submission
-        setName("");
-        setNumber("");
-    
+   
         // Show success alert
-        setAlert(<FormAlert message="We received your info. Expect a response soon!" onClose={() => setAlert(null)} />);
+        showAlert("We received your info. Expect a response soon!");
       } catch (error) {
         console.error("Error submitting form:", error);
-        setAlert(<FormAlert message="Something went wrong. Please try again later." onClose={() => setAlert(null)} />);
+        // setAlert(<FormAlert message="Something went wrong. Please try again later." onClose={() => setAlert(null)} />);
       } finally {
         setLoading(false);
       }
