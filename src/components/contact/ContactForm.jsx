@@ -26,9 +26,9 @@ ReactGA.initialize(trackingId);
 function getUTMParams() {
   const params = new URLSearchParams(window.location.search);
   return {
-    utmSource: params.get("utmSource") || "",
-    utmMedium: params.get("utmMedium") || "",
-    utmCampaign: params.get("utmCampaign") || "",
+    utmSource: params.get("utm_source") || "",
+    utmMedium: params.get("utm_medium") || "",
+    utmCampaign: params.get("utm_campaign") || "",
   };
 }
 
