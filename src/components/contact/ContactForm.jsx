@@ -25,10 +25,21 @@ ReactGA.initialize(trackingId);
  */
 function getUTMParams() {
   const params = new URLSearchParams(window.location.search);
+  const source = params.get("utm_source"); // Corrected parameter names (use underscores)
+  const medium = params.get("utm_medium");
+  const campaign = params.get("utm_campaign");
+  ReactGA.send({
+    hitType: 'pageview',
+    'utm_source': source,
+    'utm_medium': medium,
+    'utm_campaign': campaign,
+  
+  })
+
   return {
-    utmSource: params.get("utmSource") || "",
-    utmMedium: params.get("utmMedium") || "",
-    utmCampaign: params.get("utmCampaign") || "",
+    utmSource: source || "",
+    utmMedium: medium || "",
+    utmCampaign: campaign || "",
   };
 }
 
