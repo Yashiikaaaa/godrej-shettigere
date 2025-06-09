@@ -16,7 +16,7 @@ export const Overview = ({ contactmodal, setContactModal }) => {
             </div>
             {/* Paragraph */}
             <div className="max-w-4xl md:text-xl text-sm text-black font-body font-normal  mx-auto text-justify  ">
-              <span className="font-bold">Godrej Airport-city</span> Godrej Airport-City is an emerging residential development in North Bengaluru that offers quick connectivity to NH7 (Bengaluru-Hyderabad Highway) and the upcoming Bengaluru Aerospace Park, along with access to major business hubs, hospitals and schools. 
+              <span className="font-bold">BARCA at Godrej MSR City</span>- an emerging residential development in North Bengaluru that offers quick connectivity to NH7 (Bengaluru-Hyderabad Highway) and the upcoming Bengaluru Aerospace Park, along with access to major business hubs, hospitals and schools. 
 
 <p>Located in Shettigere, a fast-developing area near Kempegowda International Airport, it ensures a tranquil yet well-connected lifestyle, making it an ideal choice for frequent travellers and urban professionals alike. </p>
 
