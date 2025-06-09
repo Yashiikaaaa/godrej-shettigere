@@ -58,7 +58,7 @@ export const Home = ({ contactmodal, setContactModal }) => {
                   className="h-3 md:h-12 text-white "
                 />
                 <p className="max-w-96 font-body text-left text-white md:text-2xl text-xs font-medium leading-[130%]">
-                Adjacent to Bangalore Airport  <br className="hidden md:block" />
+                Adjacent to Bengaluru Airport  <br className="hidden md:block" />
                 Trumpet Road
                 </p>
               </div>
